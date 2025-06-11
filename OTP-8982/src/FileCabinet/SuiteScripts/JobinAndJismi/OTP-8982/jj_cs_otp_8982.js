@@ -51,7 +51,6 @@ function (log, record, url) {
         fieldId: "custpage_blood_group_filter",
       });
 
-      console.log(bloodGroup);
 
       document.location = url.resolveScript({
         scriptId: "customscript_jj_sl_otp_8982",
