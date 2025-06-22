@@ -28,13 +28,12 @@
  * 
  * 
  *************************************************************************************/
-define(["N/log", "N/record", "N/search", "N/ui/serverWidget"], /**
+define(["N/log", "N/search", "N/ui/serverWidget"], /**
  * @param{log} log
- * @param{record} record
  * @param{search} search
  * @param{serverWidget} serverWidget
  */
-(log, record, search, serverWidget) => {
+(log,search, serverWidget) => {
   /**
    * Defines the Suitelet script trigger point.
    * @param {Object} scriptContext
