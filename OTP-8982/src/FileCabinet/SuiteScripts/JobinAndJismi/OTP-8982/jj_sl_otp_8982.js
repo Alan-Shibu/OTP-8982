@@ -58,6 +58,7 @@ define(["N/log", "N/search", "N/ui/serverWidget"], /**
    */
   function formCreation(scriptContext) {
     try {
+
       let form = serverWidget.createForm({
         title: "Blood Donation Form",
       });
@@ -106,18 +107,21 @@ define(["N/log", "N/search", "N/ui/serverWidget"], /**
         type: serverWidget.FieldType.DATE,
         label: "Last Donation Date",
       });
-     
+      
       form.addSubmitButton({
         label: "Submit",
       });
 
+
+      scriptContext.response.writePage({
+        pageObject: form,
+      });
       
       let bloodgrp = scriptContext.request.parameters.bldGrp;
 
       bloodGrpField.defaultValue = bloodgrp;
-      log.debug("blood group in SL",bloodgrp);
 
-      var searchResult = fetchResults(bloodgrp);
+      let searchResult = fetchResults(bloodgrp);
 
       let i = 0;
 
@@ -174,6 +178,7 @@ define(["N/log", "N/search", "N/ui/serverWidget"], /**
         i++;
         return true;
       });
+
       scriptContext.response.writePage({
         pageObject: form,
       });
@@ -196,7 +201,7 @@ define(["N/log", "N/search", "N/ui/serverWidget"], /**
         id: "customsearch_jj_donor_match",
         type: "customrecord_jj_blood_requirement",
         filters: [
-          ["custrecord_jj_bld_grp", "anyof", bloodgroup],
+          ["custrecord_jj_bld_grp","anyof",bloodgroup],
           "AND",
           [
             "custrecord_jj_last_bld_donation_date",

@@ -20,7 +20,7 @@
  * 
  * REVISION HISTORY 
  * 
- * @version 1.0  ABC-5 : 10-June-2025 :  The initial build was created by JJ0401 
+ * @version 1.0   10-June-2025 :  The initial build was created by JJ0401 
  *   
  * 
  * 
@@ -45,20 +45,23 @@ function (log, record, url) {
    */
   function fieldChanged(scriptContext) {
     try {
-      //var is used for variable declaration as error was thrown when let was used
-      var currRec = scriptContext.currentRecord;
-      var bloodGroup = currRec.getValue({
+      
+      let currRec = scriptContext.currentRecord;
+      let bloodGroup = currRec.getValue({
         fieldId: "custpage_blood_group_filter",
       });
 
 
-      document.location = url.resolveScript({
+      let suiteletUrl = url.resolveScript({
         scriptId: "customscript_jj_sl_otp_8982",
         deploymentId: "customdeploy_jj_sl_otp_8982",
         params: {
           'bldGrp': bloodGroup,
         },
       });
+
+      window.onbeforeunload = null;
+      window.location.href = suiteletUrl;      
     } catch (e) {
       console.log("Error caught", e.message);
     }
