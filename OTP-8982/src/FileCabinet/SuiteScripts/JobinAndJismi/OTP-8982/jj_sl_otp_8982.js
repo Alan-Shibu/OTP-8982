@@ -201,13 +201,15 @@ define(["N/log", "N/search", "N/ui/serverWidget"], /**
         id: "customsearch_jj_donor_match",
         type: "customrecord_jj_blood_requirement",
         filters: [
-          ["custrecord_jj_bld_grp","anyof",bloodgroup],
+          ["custrecord_jj_bld_grp", "anyof", bloodgroup],
           "AND",
           [
             "custrecord_jj_last_bld_donation_date",
             "before",
             "threemonthsagotodate",
           ],
+          "AND",
+          ["isinactive", "is", "F"],
         ],
         columns: [
           search.createColumn({
